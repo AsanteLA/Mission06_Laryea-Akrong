@@ -11,23 +11,24 @@ namespace TheJHFilmCollection.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "MovieEntries",
+                name: "Movies",
                 columns: table => new
                 {
                     MovieID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Category = table.Column<string>(type: "TEXT", nullable: false),
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Year = table.Column<int>(type: "INTEGER", nullable: false),
-                    Director = table.Column<string>(type: "TEXT", nullable: false),
-                    Rating = table.Column<string>(type: "TEXT", nullable: false),
-                    Edited = table.Column<bool>(type: "INTEGER", nullable: true),
-                    LentTo = table.Column<string>(type: "TEXT", nullable: false),
-                    Notes = table.Column<string>(type: "TEXT", nullable: true)
+                    Director = table.Column<string>(type: "TEXT", nullable: true),
+                    Rating = table.Column<string>(type: "TEXT", nullable: true),
+                    Edited = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LentTo = table.Column<string>(type: "TEXT", nullable: true),
+                    CopiedtoPlex = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Notes = table.Column<string>(type: "TEXT", maxLength: 25, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieEntries", x => x.MovieID);
+                    table.PrimaryKey("PK_Movies", x => x.MovieID);
                 });
         }
 
@@ -35,7 +36,7 @@ namespace TheJHFilmCollection.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MovieEntries");
+                name: "Movies");
         }
     }
 }

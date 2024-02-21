@@ -32,10 +32,24 @@ namespace TheJHFilmCollection.Controllers
         [HttpPost]
         public IActionResult MovieEntryForm(MovieEntryForm response)
         {
-            _context.MovieEntries.Add(response);  //Adds record to the database
+            _context.Movies.Add(response);  //Adds record to the database
             _context.SaveChanges();
 
             return View("Confirmation", response);
+        }
+
+        public IActionResult MovieDatabase()
+        {
+            //Linq
+            var movies =
+                _context.Movies
+                .OrderBy(x => x.MovieID)
+                .ToList();
+
+            return View(movies);
+
+            //Is there a default select all and how does the program know that?
+
         }
     }
 }

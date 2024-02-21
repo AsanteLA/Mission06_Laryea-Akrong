@@ -5,8 +5,8 @@
 <h1>Movie Entry Form</h1>
 
 <form method="post">
-    <label asp-for="Category">Category:</label><br />
-    <input asp-for="Category" />
+    <label asp-for="CategoryId">Category:</label><br />
+    <input asp-for="CategoryId" />
     <br /><br />
     <label asp-for="Title">Title:</label><br />
     <input asp-for="Title" />
@@ -34,6 +34,13 @@
     <br /><br />
     <label asp-for="LentTo">Lent To:</label><br />
     <input asp-for="LentTo" />
+    <br /><br />
+    <label asp-for="CopiedtoPlex">CopiedToPlex:</label><br />
+    <select asp-for="CopiedtoPlex">
+        <option value=""></option>
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+    </select>
     <br /><br />
     <label asp-for="Notes">Notes:</label><br />
     <input asp-for="Notes" maxlength ="25"/>

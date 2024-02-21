@@ -7,6 +7,7 @@ namespace TheJHFilmCollection.Models
         public MovieEntryFormContext(DbContextOptions<MovieEntryFormContext> options) : base (options) //Constructor
         {
         }
-        public DbSet<MovieEntryForm> MovieEntries { get; set; }
+        public DbSet<MovieEntryForm> Movies { get; set; }
+
     }
 }
