@@ -27,6 +27,7 @@ namespace TheJHFilmCollection.Controllers
         [HttpGet]
         public IActionResult MovieEntryForm()
         {
+            //Contents of Categories Table
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
@@ -46,6 +47,7 @@ namespace TheJHFilmCollection.Controllers
             }
             else
             {
+                //Contents of Categories Table
                 ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
@@ -59,6 +61,7 @@ namespace TheJHFilmCollection.Controllers
             //Linq
             var movies =
                 _context.Movies
+                //Database join to join categories table
                 .Include(x => x.Category)
                 .OrderBy(x => x.MovieID)
                 .ToList();
@@ -75,6 +78,7 @@ namespace TheJHFilmCollection.Controllers
             var recordToEdit = _context.Movies
                 .Single(x => x.MovieID == id); //What if you want to show multiple records?
 
+            //Contents of Categories Table
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
@@ -97,6 +101,7 @@ namespace TheJHFilmCollection.Controllers
             var recordToDelete = _context.Movies
                 .Single(x => x.MovieID == id); //What if you want to show multiple records?
 
+            //Contents of Categories Table
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
