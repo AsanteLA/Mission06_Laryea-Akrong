@@ -26,16 +26,31 @@ namespace TheJHFilmCollection.Controllers
         [HttpGet]
         public IActionResult MovieEntryForm()
         {
-            return View();
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.Category)
+                .ToList();
+
+            return View("MovieEntryForm", new MovieEntryForm());
         }
 
         [HttpPost]
         public IActionResult MovieEntryForm(MovieEntryForm response)
         {
-            _context.Movies.Add(response);  //Adds record to the database
-            _context.SaveChanges();
+            if(ModelState.IsValid)
+            {
+                _context.Movies.Add(response);  //Adds record to the database
+                _context.SaveChanges();
 
-            return View("Confirmation", response);
+                return View("Confirmation", response);
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.Category)
+                .ToList();
+
+                return View(response);
+            }
         }
 
         public IActionResult MovieDatabase()
@@ -58,9 +73,9 @@ namespace TheJHFilmCollection.Controllers
             var recordToEdit = _context.Movies
                 .Single(x => x.MovieID == id); //What if you want to show multiple records?
 
-            //ViewBag.Majors = _context.Majors
-            //    .OrderBy(x => x.MajorName)
-            //    .ToList();
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.Category)
+                .ToList();
 
             return View("MovieEntryForm", recordToEdit);
         }
@@ -80,9 +95,9 @@ namespace TheJHFilmCollection.Controllers
             var recordToDelete = _context.Movies
                 .Single(x => x.MovieID == id); //What if you want to show multiple records?
 
-            //ViewBag.Majors = _context.Majors
-            //    .OrderBy(x => x.MajorName)
-            //    .ToList();
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.Category)
+                .ToList();
 
             return View(recordToDelete);
         }

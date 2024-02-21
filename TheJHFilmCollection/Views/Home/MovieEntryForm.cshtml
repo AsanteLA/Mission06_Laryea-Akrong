@@ -8,7 +8,13 @@
     <input type="hidden" asp-for="MovieID"/>
 
     <label asp-for="CategoryId">Category:</label><br />
-    <input asp-for="CategoryId" />
+    <select asp-for="CategoryId">
+        <option value="">Select a Category</option>
+        @foreach (Categories c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.Category</option>
+        }
+    </select>
     <br /><br />
     <label asp-for="Title">Title:</label><br />
     <input asp-for="Title" />
@@ -49,4 +55,6 @@
     <br /><br />
     <button type="submit">Submit Movie Entry</button>
     <br />
+
+    <div asp-validation-summary="All"></div>
 </form>
