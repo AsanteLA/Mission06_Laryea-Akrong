@@ -9,7 +9,7 @@ namespace TheJHFilmCollection.Models
         }
         public DbSet<MovieEntryForm> Movies { get; set; }
 
-        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
     }
 }

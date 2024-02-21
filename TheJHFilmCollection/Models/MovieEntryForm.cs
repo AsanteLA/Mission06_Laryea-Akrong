@@ -14,7 +14,7 @@ namespace TheJHFilmCollection.Models
         [ForeignKey("CategoryId")]
         public int? CategoryId { get; set; }
 
-        public Categories? Categories { get; set; }
+        public Category? Category { get; set; }
 
         //Title
         [Required]

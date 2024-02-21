@@ -2,13 +2,13 @@
 
 namespace TheJHFilmCollection.Models
 {
-    public class Categories
+    public class Category
     {
         //CategoryId
         [Key]
         public int CategoryId { get; set; }
 
         //Category
-        public string Category {  get; set; }
+        public string CategoryName {  get; set; }
     }
 }

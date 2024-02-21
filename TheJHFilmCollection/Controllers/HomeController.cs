@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TheJHFilmCollection.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -27,7 +28,7 @@ namespace TheJHFilmCollection.Controllers
         public IActionResult MovieEntryForm()
         {
             ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.Category)
+                .OrderBy(x => x.CategoryName)
                 .ToList();
 
             return View("MovieEntryForm", new MovieEntryForm());
@@ -46,7 +47,7 @@ namespace TheJHFilmCollection.Controllers
             else
             {
                 ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.Category)
+                .OrderBy(x => x.CategoryName)
                 .ToList();
 
                 return View(response);
@@ -58,6 +59,7 @@ namespace TheJHFilmCollection.Controllers
             //Linq
             var movies =
                 _context.Movies
+                .Include(x => x.Category)
                 .OrderBy(x => x.MovieID)
                 .ToList();
 
@@ -74,7 +76,7 @@ namespace TheJHFilmCollection.Controllers
                 .Single(x => x.MovieID == id); //What if you want to show multiple records?
 
             ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.Category)
+                .OrderBy(x => x.CategoryName)
                 .ToList();
 
             return View("MovieEntryForm", recordToEdit);
@@ -96,7 +98,7 @@ namespace TheJHFilmCollection.Controllers
                 .Single(x => x.MovieID == id); //What if you want to show multiple records?
 
             ViewBag.Categories = _context.Categories
-                .OrderBy(x => x.Category)
+                .OrderBy(x => x.CategoryName)
                 .ToList();
 
             return View(recordToDelete);
