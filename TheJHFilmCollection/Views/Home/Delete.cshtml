@@ -1,0 +1,12 @@
+﻿@model MovieEntryForm
+
+<h2>Confirm Deletion.</h2>
+<h3>@Model.Title</h3>
+
+<form method="post">
+
+    <input type="hidden" asp-for="MovieID" /> @*You always need to add the application ID to the form for the post method to work*@
+
+    <button type="submit">Delete</button>
+    <a class="btn btn-info" asp-controller="Home" asp-action="MovieDatabase">Cancel</a>
+</form>

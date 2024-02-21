@@ -51,5 +51,49 @@ namespace TheJHFilmCollection.Controllers
             //Is there a default select all and how does the program know that?
 
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _context.Movies
+                .Single(x => x.MovieID == id); //What if you want to show multiple records?
+
+            //ViewBag.Majors = _context.Majors
+            //    .OrderBy(x => x.MajorName)
+            //    .ToList();
+
+            return View("MovieEntryForm", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MovieEntryForm UpdatedInfo)
+        {
+            _context.Update(UpdatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieDatabase"); //Redirect to action takes you to the full action with all the functionalities and methods.
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.Movies
+                .Single(x => x.MovieID == id); //What if you want to show multiple records?
+
+            //ViewBag.Majors = _context.Majors
+            //    .OrderBy(x => x.MajorName)
+            //    .ToList();
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(MovieEntryForm Delete)
+        {
+            _context.Remove(Delete);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieDatabase");
+        }
     }
 }

@@ -5,6 +5,8 @@
 <h1>Movie Entry Form</h1>
 
 <form method="post">
+    <input type="hidden" asp-for="MovieID"/>
+
     <label asp-for="CategoryId">Category:</label><br />
     <input asp-for="CategoryId" />
     <br /><br />
